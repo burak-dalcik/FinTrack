@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Purchase Invoices | FinTrack</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13b6ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101d22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200 min-h-screen">
+<!-- Navigation Sidebar (Mini) -->
+<aside class="fixed left-0 top-0 h-full w-20 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col items-center py-6 gap-8 z-40">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-icons">account_balance_wallet</span>
+</div>
+<nav class="flex flex-col gap-6">
+<a class="p-2 text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-icons">dashboard</span></a>
+<a class="p-2 text-primary bg-primary/10 rounded-lg" href="#"><span class="material-icons">receipt_long</span></a>
+<a class="p-2 text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-icons">group</span></a>
+<a class="p-2 text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-icons">insert_chart</span></a>
+<a class="p-2 text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-icons">settings</span></a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-20 p-8">
+<!-- Header -->
+<header class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h1 class="text-2xl font-bold text-slate-900 dark:text-white">Purchase Invoices</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Manage your expenses and upload new receipts for OCR processing.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-center gap-2">
+<span class="material-icons text-lg">add</span>
+                    Record New
+                </button>
+<button class="px-5 py-2 bg-primary hover:bg-primary/90 text-white rounded-lg font-medium transition-colors shadow-sm shadow-primary/20 flex items-center gap-2">
+<span class="material-icons text-lg">upload_file</span>
+                    Upload Invoice
+                </button>
+</div>
+</header>
+<!-- Stats Grid (Quick View) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Total Unpaid</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">$12,450.00</h3>
+<div class="mt-2 text-xs text-amber-600 dark:text-amber-400 font-medium flex items-center gap-1">
+<span class="material-icons text-sm">error_outline</span> 8 invoices overdue
+                </div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Processing (OCR)</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">3</h3>
+<div class="mt-2 text-xs text-primary font-medium flex items-center gap-1">
+<span class="material-icons text-sm">sync</span> Syncing with bank feed
+                </div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Documents Missing</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">14</h3>
+<div class="mt-2 text-xs text-slate-400 font-medium flex items-center gap-1">
+<span class="material-icons text-sm">attach_file</span> Manual entries without PDF
+                </div>
+</div>
+</section>
+<!-- Filter Bar -->
+<section class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm mb-6 flex flex-wrap items-center justify-between gap-4">
+<div class="relative w-full md:w-96">
+<span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary text-sm" placeholder="Search by supplier or invoice #..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex bg-slate-50 dark:bg-slate-800 rounded-lg p-1">
+<button class="px-3 py-1.5 text-xs font-medium bg-white dark:bg-slate-700 shadow-sm rounded-md text-slate-900 dark:text-white">All</button>
+<button class="px-3 py-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700">Pending</button>
+<button class="px-3 py-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700">Paid</button>
+</div>
+<button class="p-2 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-500 hover:text-primary transition-colors">
+<span class="material-icons">filter_list</span>
+</button>
+</div>
+</section>
+<!-- Invoices Table -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50 dark:bg-slate-800/50 border-bottom border-slate-200 dark:border-slate-800">
+<tr>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Date</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Supplier</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Amount</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">Document</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Row 1: Processing OCR -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400 italic">Just now</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-white flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center animate-pulse">
+<span class="material-icons text-primary text-sm">autorenew</span>
+</div>
+                            Extracting data...
+                        </td>
+<td class="px-6 py-4 text-sm font-semibold text-right text-slate-400">---</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
+                                Processing
+                            </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-primary hover:text-primary/70 transition-colors" title="Processing file">
+<span class="material-icons text-xl">file_present</span>
+</button>
+</td>
+<td class="px-6 py-4 text-slate-400">
+<button class="p-1 hover:text-slate-600 dark:hover:text-slate-200"><span class="material-icons">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 2: Paid -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Oct 24, 2023</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-white">CloudScale Hosting</td>
+<td class="px-6 py-4 text-sm font-semibold text-right text-slate-900 dark:text-white">$142.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400">
+                                Paid
+                            </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-primary hover:scale-110 transition-transform" title="View PDF">
+<span class="material-icons text-xl">description</span>
+</button>
+</td>
+<td class="px-6 py-4 text-slate-400">
+<button class="p-1 hover:text-slate-600 dark:hover:text-slate-200"><span class="material-icons">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 3: Overdue -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Oct 20, 2023</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-white">Office Supply Co.</td>
+<td class="px-6 py-4 text-sm font-semibold text-right text-slate-900 dark:text-white">$890.45</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-400">
+                                Overdue
+                            </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-primary hover:scale-110 transition-transform" title="View PDF">
+<span class="material-icons text-xl">attach_file</span>
+</button>
+</td>
+<td class="px-6 py-4 text-slate-400">
+<button class="p-1 hover:text-slate-600 dark:hover:text-slate-200"><span class="material-icons">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 4: No Document -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Oct 18, 2023</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-white">Marketing Agency X</td>
+<td class="px-6 py-4 text-sm font-semibold text-right text-slate-900 dark:text-white">$2,500.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300">
+                                Pending
+                            </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-300 dark:text-slate-600 hover:text-primary transition-colors" title="Upload document">
+<span class="material-icons text-xl">add_circle_outline</span>
+</button>
+</td>
+<td class="px-6 py-4 text-slate-400">
+<button class="p-1 hover:text-slate-600 dark:hover:text-slate-200"><span class="material-icons">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-slate-50 dark:bg-slate-800/30 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<p class="text-xs text-slate-500">Showing 1 to 4 of 32 results</p>
+<div class="flex gap-1">
+<button class="p-1 text-slate-400 hover:text-primary disabled:opacity-50"><span class="material-icons">chevron_left</span></button>
+<button class="w-7 h-7 flex items-center justify-center text-xs font-bold bg-primary text-white rounded">1</button>
+<button class="w-7 h-7 flex items-center justify-center text-xs font-medium text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 rounded">2</button>
+<button class="w-7 h-7 flex items-center justify-center text-xs font-medium text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 rounded">3</button>
+<button class="p-1 text-slate-400 hover:text-primary"><span class="material-icons">chevron_right</span></button>
+</div>
+</div>
+</div>
+</main>
+<!-- Side Preview Drawer (Overlay-ish) -->
+<!-- Initially hidden in a real app, but showing here as requested context -->
+<div class="fixed inset-y-0 right-0 w-96 bg-white dark:bg-slate-900 shadow-2xl border-l border-slate-200 dark:border-slate-800 z-50 transform translate-x-full transition-transform duration-300 invisible">
+<div class="p-6 h-full flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-bold text-lg">Invoice Details</h2>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full">
+<span class="material-icons">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto">
+<div class="aspect-[1/1.4] bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center mb-6 relative overflow-hidden group">
+<img alt="Invoice PDF Preview" class="w-full h-full object-cover opacity-60" data-alt="Close up of a financial invoice document" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjwijQJ5onkEHoI7rTDToft4gYq2_gFiXjzUYNaUCS2qdWDxDQvqwJupDjU301ZnMPrpvseDlXt0-CKURVw53Mh7-skSsA-mydJyUHFfRTq6iz1lyWsSzqL2jH3b4Yix65tVEaDAsmexh8yXOTEczJNSFCmMJpSXzq3kbAbTLQrdVzoXaaXl75MviNYEs4BbMyF5uZmcdqqyIE7zgHz0_ZUd7EDpnh0nDYhIy_-Y1RzFNV1jdy6SqvIpIV28g2ofyeegZe4D5kWTk"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-white text-slate-900 px-4 py-2 rounded-lg font-medium shadow-lg flex items-center gap-2">
+<span class="material-icons">zoom_in</span> Full Screen
+                         </button>
+</div>
+</div>
+<div class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-xs text-slate-500 uppercase tracking-wider">Date</p>
+<p class="text-sm font-medium">Oct 24, 2023</p>
+</div>
+<div>
+<p class="text-xs text-slate-500 uppercase tracking-wider">Invoice #</p>
+<p class="text-sm font-medium">INV-998234</p>
+</div>
+</div>
+<div>
+<p class="text-xs text-slate-500 uppercase tracking-wider">Supplier</p>
+<p class="text-sm font-medium">CloudScale Hosting Services Inc.</p>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm text-slate-500">Subtotal</span>
+<span class="text-sm font-medium">$129.09</span>
+</div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm text-slate-500">VAT (10%)</span>
+<span class="text-sm font-medium">$12.91</span>
+</div>
+<div class="flex justify-between items-center pt-2">
+<span class="font-bold">Total Amount</span>
+<span class="font-bold text-primary text-lg">$142.00</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-6 mt-auto">
+<button class="w-full py-3 bg-primary text-white font-bold rounded-lg mb-3">Mark as Paid</button>
+<button class="w-full py-3 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg">Download PDF</button>
+</div>
+</div>
+</div>
+<!-- Active Upload Toast Notification -->
+<div class="fixed bottom-6 right-6 w-80 bg-white dark:bg-slate-900 rounded-xl border-l-4 border-primary shadow-2xl p-4 z-50">
+<div class="flex items-start justify-between mb-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-icons text-sm">upload_file</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Uploading Invoice</p>
+<p class="text-xs text-slate-500 truncate max-w-[160px]">q4_travel_expenses.pdf</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-slate-600"><span class="material-icons text-sm">close</span></button>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-semibold text-slate-500 uppercase">
+<span>OCR Processing</span>
+<span>85%</span>
+</div>
+<div class="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500 ease-out" style="width: 85%;"></div>
+</div>
+</div>
+</div>
+</body></html>

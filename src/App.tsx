@@ -36,6 +36,7 @@ export const App = () => {
         <Route path="invoices">
           <Route index element={<InvoicesPage />} />
           <Route path="create" element={<CreateInvoicePage />} />
+          <Route path=":id" element={<InvoiceDetailPage />} />
         </Route>
         <Route path="suppliers" element={<SuppliersPage />} />
         <Route path="customers" element={<CustomersPage />} />
