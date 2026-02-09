@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create New Sales Invoice - FinTrack</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-link {
+            background-color: rgba(19, 127, 236, 0.1);
+            color: #137fec;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none !important;
+            --tw-ring-color: #137fec !important;
+            border-color: #137fec !important;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d141b] dark:text-slate-200">
+<div class="flex min-h-screen">
+<aside class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark flex flex-col fixed inset-y-0">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="bg-primary text-white p-1.5 rounded-lg">
+<span class="material-symbols-outlined block">account_balance_wallet</span>
+</div>
+<h2 class="text-xl font-black tracking-tight text-[#0d141b] dark:text-white">FinTrack</h2>
+</div>
+<p class="text-xs font-medium text-slate-500 mt-1 uppercase tracking-wider">Pre-accounting</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg active-link" href="#">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+<span class="text-sm font-semibold">Sales Invoices</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+<span class="text-sm font-medium">Purchase Invoices</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="text-sm font-medium">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">factory</span>
+<span class="text-sm font-medium">Suppliers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">credit_card</span>
+<span class="text-sm font-medium">Payments</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="text-sm font-medium">Expenses</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">bar_chart</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50" href="#">
+<span class="material-symbols-outlined text-[20px]">person</span>
+<span class="text-sm font-medium">Users</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</aside>
+<main class="flex-1 ml-64 flex flex-col">
+<header class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-10 px-8 flex items-center justify-between">
+<nav class="flex items-center text-sm font-medium text-slate-500 gap-2">
+<a class="hover:text-primary transition-colors" href="#">Sales Invoices</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-slate-900 dark:text-white">Create New</span>
+</nav>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-sm font-bold leading-none">Alex Rivera</p>
+<p class="text-xs text-slate-500">Apex Creative Studio</p>
+</div>
+<div class="h-10 w-10 rounded-full bg-cover bg-center border-2 border-primary/20" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDO7jBKO_-fVu2F4kiLcqlRK0Un4YulnGf4hR_ltGDqonRDbAghhfYhQ8s_h5_SzKoEU9mkBzIvtWJWKHxyu1qNKVVp3TPxVZTjkeBPsgme1hMzUGcsCkKUVNVSB0XP08aoQPb1Hfq9LRIHT5oMi4i6zUfYOv4bfutrv3nyknozmGhA9PwZ1TlxLdWUtCwyKGY87OvpUJ4T4PmQpxEUfENTmmdHjQSQJ28nigi6jz2V3F-EAvihcTF4CzZRC_yER6b0Bm0UQpOlEbY')"></div>
+</div>
+</div>
+</header>
+<div class="p-8 max-w-5xl w-full mx-auto">
+<div class="mb-8">
+<h1 class="text-3xl font-black text-[#0d141b] dark:text-white tracking-tight">Create New Sales Invoice</h1>
+<p class="text-slate-500 text-sm mt-1">Fill in the details below to generate a professional invoice for your customer.</p>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden mb-8">
+<div class="p-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+<div class="col-span-1 md:col-span-2">
+<label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Customer</label>
+<div class="relative">
+<select class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm appearance-none focus:ring-2 focus:ring-primary/20 transition-all">
+<option value="">Select a customer</option>
+<option value="1">TechCorp Inc.</option>
+<option value="2">DesignFlow Studio</option>
+<option value="3">Global Media Group</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div>
+<label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Invoice Date</label>
+<input class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 transition-all" type="date" value="2024-05-20"/>
+</div>
+<div>
+<label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Due Date</label>
+<input class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 transition-all" type="date" value="2024-06-20"/>
+</div>
+<div>
+<label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Reference Number</label>
+<input class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="e.g. PO-12345" type="text"/>
+</div>
+</div>
+<div class="mb-6">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="border-b border-slate-100 dark:border-slate-800">
+<tr>
+<th class="py-3 text-xs font-bold text-slate-400 uppercase tracking-wider w-1/2">Description</th>
+<th class="px-4 py-3 text-xs font-bold text-slate-400 uppercase tracking-wider text-center w-20">Qty</th>
+<th class="px-4 py-3 text-xs font-bold text-slate-400 uppercase tracking-wider text-right w-32">Unit Price</th>
+<th class="py-3 text-xs font-bold text-slate-400 uppercase tracking-wider text-right w-32">Amount</th>
+<th class="w-10"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50 dark:divide-slate-800/50">
+<tr>
+<td class="py-4">
+<input class="w-full bg-transparent border-none p-0 text-sm focus:ring-0" placeholder="Item description..." type="text" value="Website Redesign - Phase 1"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input class="w-16 bg-transparent border-none p-0 text-sm text-center focus:ring-0" type="number" value="1"/>
+</td>
+<td class="px-4 py-4 text-right">
+<input class="w-24 bg-transparent border-none p-0 text-sm text-right focus:ring-0" type="text" value="1,200.00"/>
+</td>
+<td class="py-4 text-right text-sm font-bold">
+                                            $1,200.00
+                                        </td>
+<td class="text-right">
+<button class="text-slate-300 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</td>
+</tr>
+<tr>
+<td class="py-4 text-slate-400 italic">
+<input class="w-full bg-transparent border-none p-0 text-sm focus:ring-0" placeholder="Add new item..." type="text"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input class="w-16 bg-transparent border-none p-0 text-sm text-center focus:ring-0" placeholder="0" type="number"/>
+</td>
+<td class="px-4 py-4 text-right">
+<input class="w-24 bg-transparent border-none p-0 text-sm text-right focus:ring-0" placeholder="0.00" type="text"/>
+</td>
+<td class="py-4 text-right text-sm font-bold text-slate-300">
+                                            $0.00
+                                        </td>
+<td class="text-right"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<button class="mt-4 flex items-center gap-2 text-primary text-sm font-bold hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+                            Add Another Item
+                        </button>
+</div>
+<div class="flex flex-col md:flex-row justify-between pt-8 border-t border-slate-100 dark:border-slate-800 gap-8">
+<div class="flex-1">
+<label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Internal Notes</label>
+<textarea class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Add any notes for yourself or your team..." rows="3"></textarea>
+</div>
+<div class="w-full md:w-80 space-y-3">
+<div class="flex justify-between items-center text-sm">
+<span class="font-medium text-slate-500">Subtotal</span>
+<span class="font-bold">$1,200.00</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="font-medium text-slate-500">Tax</span>
+<select class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-xs font-bold py-1 pl-2 pr-6 focus:ring-0">
+<option>VAT 20%</option>
+<option>VAT 0%</option>
+<option>Sales Tax 8%</option>
+</select>
+</div>
+<span class="font-bold">$240.00</span>
+</div>
+<div class="h-[1px] bg-slate-100 dark:bg-slate-800 my-2"></div>
+<div class="flex justify-between items-center">
+<span class="text-lg font-black tracking-tight">Total Amount</span>
+<span class="text-2xl font-black text-primary">$1,440.00</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/30 px-8 py-6 flex flex-wrap items-center justify-between gap-4 border-t border-slate-100 dark:border-slate-800">
+<button class="flex items-center gap-2 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 font-bold text-sm transition-colors">
+<span class="material-symbols-outlined">attachment</span>
+                        Attach Files
+                    </button>
+<div class="flex items-center gap-3">
+<button class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-slate-50 transition-colors">
+                            Save Draft
+                        </button>
+<button class="bg-primary text-white px-8 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">send</span>
+                            Send Invoice
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<footer class="mt-auto p-8 text-center text-slate-400 text-sm">
+            © 2024 FinTrack Financial Tools. All rights reserved.
+        </footer>
+</main>
+</div>
+
+</body></html>

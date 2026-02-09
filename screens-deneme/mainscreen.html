@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FinTrack Dashboard Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-link {
+            background-color: rgba(19, 127, 236, 0.1);
+            color: #137fec;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d141b] dark:text-slate-200">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark flex flex-col fixed inset-y-0">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="bg-primary text-white p-1.5 rounded-lg">
+<span class="material-symbols-outlined block">account_balance_wallet</span>
+</div>
+<h2 class="text-xl font-black tracking-tight text-[#0d141b] dark:text-white">FinTrack</h2>
+</div>
+<p class="text-xs font-medium text-slate-500 mt-1 uppercase tracking-wider">Pre-accounting</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg active-link" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+<span class="text-sm font-medium">Sales Invoices</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+<span class="text-sm font-medium">Purchase Invoices</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="text-sm font-medium">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">factory</span>
+<span class="text-sm font-medium">Suppliers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">credit_card</span>
+<span class="text-sm font-medium">Payments</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="text-sm font-medium">Expenses</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50" href="#">
+<span class="material-symbols-outlined text-[20px]">bar_chart</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50" href="#">
+<span class="material-symbols-outlined text-[20px]">person</span>
+<span class="text-sm font-medium">Users</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 ml-64 flex flex-col">
+<!-- Top Navbar -->
+<header class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-10 px-8 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="text-sm font-medium text-slate-500">My Business:</span>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-sm font-semibold hover:bg-slate-200 transition-colors">
+<span>Apex Creative Studio</span>
+<span class="material-symbols-outlined text-sm">unfold_more</span>
+</button>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-800 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-sm font-bold leading-none">Alex Rivera</p>
+<p class="text-xs text-slate-500">Owner</p>
+</div>
+<div class="h-10 w-10 rounded-full bg-cover bg-center border-2 border-primary/20" data-alt="Portrait of a professional man smiling" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAgVebhwWa89Wz-TrW_h68MXB2iRKuJU0MDN5dRyGsikNg75m4PqHoVKVR9Pk3e8D4lndH9ZhL781hq539dcw-vsON82h0gkd2tD3s88VIgOfmzNaSaAm4HIV9JI91PILML9EC6EiSExaN38CrshguDl9qKP1U_MmQj2IIMgG5v8BDJfqPVTQ9KtSk9wrecDHnTdVPx9-GoA7s2kSq3lhjMBfspFnTd4MyUzBjOhoJZ7ho3duRDfgKaLKz9ro36sLrhYmVXGVLzRdM')"></div>
+</div>
+</div>
+</header>
+<div class="p-8 max-w-7xl w-full mx-auto">
+<!-- Page Heading & Date Filters -->
+<div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+<div>
+<h1 class="text-3xl font-black text-[#0d141b] dark:text-white tracking-tight">Dashboard Overview</h1>
+<p class="text-slate-500 text-sm mt-1">Track your business performance and outstanding items.</p>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 p-1 rounded-xl flex">
+<label class="px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer has-[:checked]:bg-white dark:has-[:checked]:bg-slate-700 has-[:checked]:shadow-sm text-slate-500 has-[:checked]:text-primary transition-all">
+<span>Today</span>
+<input class="hidden" name="date-filter" type="radio"/>
+</label>
+<label class="px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer has-[:checked]:bg-white dark:has-[:checked]:bg-slate-700 has-[:checked]:shadow-sm text-slate-500 has-[:checked]:text-primary transition-all">
+<span>This Month</span>
+<input checked="" class="hidden" name="date-filter" type="radio"/>
+</label>
+<label class="px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer has-[:checked]:bg-white dark:has-[:checked]:bg-slate-700 has-[:checked]:shadow-sm text-slate-500 has-[:checked]:text-primary transition-all">
+<span>Custom</span>
+<input class="hidden" name="date-filter" type="radio"/>
+</label>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-16 h-16 bg-green-500/5 rounded-bl-full"></div>
+<p class="text-sm font-semibold text-slate-500 mb-2">Total Income</p>
+<p class="text-2xl font-black text-green-600">$12,450.00</p>
+<div class="mt-4 flex items-center gap-1 text-xs font-bold text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded-full w-fit">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>12% vs last month</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-16 h-16 bg-orange-500/5 rounded-bl-full"></div>
+<p class="text-sm font-semibold text-slate-500 mb-2">Total Expense</p>
+<p class="text-2xl font-black text-orange-600">$8,320.00</p>
+<div class="mt-4 flex items-center gap-1 text-xs font-bold text-orange-600 bg-orange-50 dark:bg-orange-900/20 px-2 py-1 rounded-full w-fit">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>5% vs last month</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full"></div>
+<p class="text-sm font-semibold text-slate-500 mb-2">Outstanding Receivables</p>
+<p class="text-2xl font-black text-primary">$4,100.00</p>
+<div class="mt-4 flex items-center gap-1 text-xs font-bold text-primary bg-primary/5 dark:bg-primary/20 px-2 py-1 rounded-full w-fit">
+<span class="material-symbols-outlined text-[14px]">pending_actions</span>
+<span>8 Pending Invoices</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-16 h-16 bg-red-500/5 rounded-bl-full"></div>
+<p class="text-sm font-semibold text-slate-500 mb-2">Outstanding Payables</p>
+<p class="text-2xl font-black text-red-600">$2,150.00</p>
+<div class="mt-4 flex items-center gap-1 text-xs font-bold text-red-600 bg-red-50 dark:bg-red-900/20 px-2 py-1 rounded-full w-fit">
+<span class="material-symbols-outlined text-[14px]">error_outline</span>
+<span>Due soon</span>
+</div>
+</div>
+</div>
+<!-- Quick Actions Section -->
+<div class="mb-10 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl shadow-sm flex flex-wrap items-center gap-4">
+<span class="text-sm font-bold text-slate-400 uppercase tracking-widest px-2">Quick Actions</span>
+<button class="bg-primary text-white px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+                        Create Sales Invoice
+                    </button>
+<button class="bg-white dark:bg-slate-800 text-primary border border-primary/20 px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-[20px]">shopping_cart_checkout</span>
+                        Create Purchase Invoice
+                    </button>
+</div>
+<!-- Tables Section -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Recent Sales Invoices -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+<h3 class="text-lg font-bold">Recent Sales Invoices</h3>
+<a class="text-primary text-sm font-semibold hover:underline" href="#">View All</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50 dark:bg-slate-800/50">
+<tr>
+<th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">ID</th>
+<th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Customer</th>
+<th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Amount</th>
+<th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+<td class="px-6 py-4 text-sm font-medium">INV-2024-01</td>
+<td class="px-6 py-4 text-sm">TechCorp Inc.</td>
+<td class="px-6 py-4 text-sm font-bold text-right">$1,200.00</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 text-[11px] font-bold rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">PAID</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+<td class="px-6 py-4 text-sm font-medium">INV-2024-02</td>
+<td class="px-6 py-4 text-sm">DesignFlow</td>
+<td class="px-6 py-4 text-sm font-bold text-right">$850.00</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 text-[11px] font-bold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500">UNPAID</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+<td class="px-6 py-4 text-sm font-medium">INV-2024-03</td>
+<td class="px-6 py-4 text-sm">Global Media</td>
+<td class="px-6 py-4 text-sm font-bold text-right">$2,400.00</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 text-[11px] font-bold rounded-full bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400">OVERDUE</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Recent Purchase Invoices -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+<h3 class="text-lg font-bold">Recent Purchase Invoices</h3>
+<a class="text-primary text-sm font-semibold hover:underline" href="#">View All</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50 dark:bg-slate-800/50">
+<tr>
+<th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">ID</th>
+<th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Supplier</th>
+<th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Amount</th>
+<th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+<td class="px-6 py-4 text-sm font-medium">PUR-994</td>
+<td class="px-6 py-4 text-sm">Cloud Servers Ltd.</td>
+<td class="px-6 py-4 text-sm font-bold text-right">$450.00</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 text-[11px] font-bold rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">PAID</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+<td class="px-6 py-4 text-sm font-medium">PUR-1002</td>
+<td class="px-6 py-4 text-sm">Office Essentials</td>
+<td class="px-6 py-4 text-sm font-bold text-right">$125.50</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 text-[11px] font-bold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500">PENDING</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+<td class="px-6 py-4 text-sm font-medium">PUR-1005</td>
+<td class="px-6 py-4 text-sm">Telecom Solutions</td>
+<td class="px-6 py-4 text-sm font-bold text-right">$89.00</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 text-[11px] font-bold rounded-full bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400">DUE TODAY</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Area -->
+<footer class="mt-auto p-8 text-center text-slate-400 text-sm">
+                © 2024 FinTrack Financial Tools. All rights reserved.
+            </footer>
+</main>
+</div>
+</body></html>
