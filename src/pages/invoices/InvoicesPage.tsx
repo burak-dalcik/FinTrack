@@ -48,8 +48,8 @@ export const InvoicesPage = () => {
       const res = await invoiceService.list({
         type: tab,
         status: statusFilter === "ALL" ? undefined : statusFilter,
-        issueDate: fromDate || undefined,
-        dueDate: toDate || undefined,
+        issueDateFrom: fromDate || undefined,
+        issueDateTo: toDate || undefined,
         page,
         pageSize
       });
@@ -72,6 +72,53 @@ export const InvoicesPage = () => {
     setPage(1);
     setSearchParams({ type: newTab });
   };
+
+  const setIssueDateRange = (from: string, to: string) => {
+    setFromDate(from);
+    setToDate(to);
+    setPage(1);
+  };
+
+  const applyDatePreset = (preset: string) => {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = now.getMonth();
+    if (preset === "all") {
+      setFromDate("");
+      setToDate("");
+    } else if (preset === "thisMonth") {
+      const from = new Date(y, m, 1);
+      const to = new Date(y, m + 1, 0);
+      setIssueDateRange(from.toISOString().slice(0, 10), to.toISOString().slice(0, 10));
+    } else if (preset === "lastMonth") {
+      const from = new Date(y, m - 1, 1);
+      const to = new Date(y, m, 0);
+      setIssueDateRange(from.toISOString().slice(0, 10), to.toISOString().slice(0, 10));
+    } else if (preset === "thisYear") {
+      const from = new Date(y, 0, 1);
+      const to = new Date(y, 11, 31);
+      setIssueDateRange(from.toISOString().slice(0, 10), to.toISOString().slice(0, 10));
+    }
+  };
+
+  const datePresetValue =
+    !fromDate && !toDate
+      ? "all"
+      : (() => {
+          const now = new Date();
+          const y = now.getFullYear();
+          const m = now.getMonth();
+          const thisMonthFrom = new Date(y, m, 1).toISOString().slice(0, 10);
+          const thisMonthTo = new Date(y, m + 1, 0).toISOString().slice(0, 10);
+          const lastMonthFrom = new Date(y, m - 1, 1).toISOString().slice(0, 10);
+          const lastMonthTo = new Date(y, m, 0).toISOString().slice(0, 10);
+          const thisYearFrom = new Date(y, 0, 1).toISOString().slice(0, 10);
+          const thisYearTo = new Date(y, 11, 31).toISOString().slice(0, 10);
+          if (fromDate === thisMonthFrom && toDate === thisMonthTo) return "thisMonth";
+          if (fromDate === lastMonthFrom && toDate === lastMonthTo) return "lastMonth";
+          if (fromDate === thisYearFrom && toDate === thisYearTo) return "thisYear";
+          return "custom";
+        })();
 
   return (
     <div>
@@ -153,12 +200,12 @@ export const InvoicesPage = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
           <select
             className="bg-slate-50 dark:bg-slate-800 border-none rounded-lg text-sm px-3 py-2 focus:ring-2 focus:ring-primary"
             value={statusFilter}
             onChange={(e) => {
-              setStatusFilter(e.target.value as any);
+              setStatusFilter(e.target.value as InvoiceStatus | "ALL");
               setPage(1);
             }}
           >
@@ -169,18 +216,45 @@ export const InvoicesPage = () => {
             <option value="overdue">Overdue</option>
           </select>
 
-          <input
-            type="date"
+          <select
             className="bg-slate-50 dark:bg-slate-800 border-none rounded-lg text-sm px-3 py-2 focus:ring-2 focus:ring-primary"
-            value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
-          />
-          <input
-            type="date"
-            className="bg-slate-50 dark:bg-slate-800 border-none rounded-lg text-sm px-3 py-2 focus:ring-2 focus:ring-primary"
-            value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
-          />
+            value={datePresetValue}
+            onChange={(e) => applyDatePreset(e.target.value)}
+            title="Issue date range"
+          >
+            <option value="all">All time</option>
+            <option value="thisMonth">This month</option>
+            <option value="lastMonth">Last month</option>
+            <option value="thisYear">This year</option>
+            <option value="custom">Custom range</option>
+          </select>
+
+          <label className="flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400">
+            <span className="hidden sm:inline">From</span>
+            <input
+              type="date"
+              className="bg-slate-50 dark:bg-slate-800 border-none rounded-lg text-sm px-3 py-2 focus:ring-2 focus:ring-primary"
+              value={fromDate}
+              onChange={(e) => {
+                setFromDate(e.target.value);
+                setPage(1);
+              }}
+              title="Issue date from (day-month-year)"
+            />
+          </label>
+          <label className="flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400">
+            <span className="hidden sm:inline">To</span>
+            <input
+              type="date"
+              className="bg-slate-50 dark:bg-slate-800 border-none rounded-lg text-sm px-3 py-2 focus:ring-2 focus:ring-primary"
+              value={toDate}
+              onChange={(e) => {
+                setToDate(e.target.value);
+                setPage(1);
+              }}
+              title="Issue date to (day-month-year)"
+            />
+          </label>
         </div>
       </section>
 

@@ -8,6 +8,8 @@ export interface InvoiceFilters {
   supplierId?: string;
   invoiceNumber?: string;
   issueDate?: string;
+  issueDateFrom?: string;
+  issueDateTo?: string;
   dueDate?: string;
   page?: number;
   pageSize?: number;
@@ -73,6 +75,8 @@ export const invoiceService = {
         supplierId: filters.supplierId,
         invoiceNumber: filters.invoiceNumber,
         issueDate: filters.issueDate,
+        issueDateFrom: filters.issueDateFrom,
+        issueDateTo: filters.issueDateTo,
         dueDate: filters.dueDate,
         pageNumber: filters.page,
         pageRowCount: filters.pageSize
