@@ -6,6 +6,7 @@ import { PasswordResetPage } from "./pages/auth/PasswordResetPage";
 import { DashboardPage } from "./pages/dashboard/DashboardPage";
 import { InvoicesPage } from "./pages/invoices/InvoicesPage";
 import { CreateInvoicePage } from "./pages/invoices/CreateInvoicePage";
+import { InvoiceDetailPage } from "./pages/invoices/InvoiceDetailPage";
 import { SuppliersPage } from "./pages/suppliers/SuppliersPage";
 import { CustomersPage } from "./pages/customers/CustomersPage";
 import { PaymentsPage } from "./pages/payments/PaymentsPage";
