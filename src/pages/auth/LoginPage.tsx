@@ -9,8 +9,8 @@ export const LoginPage = () => {
   const location = useLocation() as any;
   const from = location.state?.from?.pathname || "/";
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@fintract.com");
+  const [password, setPassword] = useState("Admin.123");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
