@@ -17,7 +17,7 @@ export const LoginPage = () => {
   // Geliştirme için: varsayılan ortam ve business
   useEffect(() => {
     setEnvironment("preview");
-    setBusinessCodename("burak");
+    setBusinessCodename("babil");
   }, []);
 
   if (user && !isLoading) {
