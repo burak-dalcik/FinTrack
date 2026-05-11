@@ -29,6 +29,7 @@ export const getEnvironment = (): Environment => {
 
 export const setEnvironment = (env: Environment) => {
   localStorage.setItem(ENV_STORAGE_KEY, env);
+  refreshClientBaseUrls();
 };
 
 export const getBusinessCodename = () =>
@@ -92,4 +93,15 @@ export const paymentClient = createServiceClient("paymentManagement");
 export const expenseClient = createServiceClient("expenseManagement");
 export const productClient = createServiceClient("productCatalog");
 export const bffClient = createServiceClient("bff");
+
+const refreshClientBaseUrls = () => {
+  authClient.defaults.baseURL = getServiceBaseUrl("auth");
+  customerClient.defaults.baseURL = getServiceBaseUrl("customerManagement");
+  supplierClient.defaults.baseURL = getServiceBaseUrl("supplierManagement");
+  invoiceClient.defaults.baseURL = getServiceBaseUrl("invoiceManagement");
+  paymentClient.defaults.baseURL = getServiceBaseUrl("paymentManagement");
+  expenseClient.defaults.baseURL = getServiceBaseUrl("expenseManagement");
+  productClient.defaults.baseURL = getServiceBaseUrl("productCatalog");
+  bffClient.defaults.baseURL = getServiceBaseUrl("bff");
+};
 

@@ -1,12 +1,10 @@
-import axios from "axios";
 import { authClient } from "./apiClient";
 import { AuthSession } from "../types/auth";
 
 export const authService = {
   async login(email: string, password: string): Promise<AuthSession> {
-    // Login is a system route under auth service: POST /login
-    const baseURL = (authClient.defaults.baseURL as string) ?? "";
-    const response = await axios.post<AuthSession>(`${baseURL}/login`, {
+    // Login is tenant-scoped; use authClient so headers/interceptors are applied.
+    const response = await authClient.post<AuthSession>("/login", {
       username: email,
       password
     });
