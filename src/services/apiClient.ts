@@ -6,10 +6,12 @@ const DEFAULT_ENV: Environment = "production";
 const ENV_STORAGE_KEY = "fintrack_env";
 const BUSINESS_CODENAME_KEY = "fintrack_business_codename";
 
-const BASES: Record<Environment, string> = {
-  preview: "https://fintrack.prw.mindbricks.com",
-  staging: "https://fintrack-stage.mindbricks.co",
-  production: "https://fintrack.mindbricks.co"
+/** Production API host; override with `VITE_API_BASE` in `.env` (no trailing slash). */
+const DEFAULT_API_BASE = "https://fintrackapi.dalciksoft.com";
+
+export const getApiBase = (): string => {
+  const raw = import.meta.env.VITE_API_BASE?.trim();
+  return (raw || DEFAULT_API_BASE).replace(/\/$/, "");
 };
 
 type ServiceName =
@@ -24,7 +26,9 @@ type ServiceName =
 
 export const getEnvironment = (): Environment => {
   const stored = (localStorage.getItem(ENV_STORAGE_KEY) as Environment | null) ?? DEFAULT_ENV;
-  return stored && stored in BASES ? stored : DEFAULT_ENV;
+  return stored === "preview" || stored === "staging" || stored === "production"
+    ? stored
+    : DEFAULT_ENV;
 };
 
 export const setEnvironment = (env: Environment) => {
@@ -40,7 +44,7 @@ export const setBusinessCodename = (codename: string) => {
 };
 
 const getServiceBaseUrl = (service: ServiceName) => {
-  const appBase = BASES[getEnvironment()];
+  const appBase = getApiBase();
   switch (service) {
     case "auth":
       return `${appBase}/auth-api`;

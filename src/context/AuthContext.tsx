@@ -9,6 +9,15 @@ import {
 import { useNavigate } from "react-router-dom";
 import { AuthState, AuthSession, Role, User } from "../types/auth";
 import { authService } from "../services/authService";
+import { setBusinessCodename, setEnvironment } from "../services/apiClient";
+import { SKIP_AUTH } from "../config/authMode";
+
+const DEV_USER: User = {
+  id: "dev-local",
+  name: "Dev User",
+  email: "dev@local",
+  role: Role.Owner
+};
 
 interface AuthContextValue extends AuthState {
   login: (email: string, password: string) => Promise<void>;
@@ -22,13 +31,18 @@ const AUTH_TOKEN_KEY = "fintrack_auth_token";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
-  const [state, setState] = useState<AuthState>({
-    user: null,
-    token: null,
-    isLoading: true
-  });
+  const [state, setState] = useState<AuthState>(() =>
+    SKIP_AUTH
+      ? { user: DEV_USER, token: null, isLoading: false }
+      : { user: null, token: null, isLoading: true }
+  );
 
   useEffect(() => {
+    if (SKIP_AUTH) {
+      setEnvironment("preview");
+      setBusinessCodename("babil");
+      return;
+    }
     const bootstrap = async () => {
       const storedToken = localStorage.getItem(AUTH_TOKEN_KEY);
       if (!storedToken) {
@@ -48,6 +62,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = async (email: string, password: string) => {
+    if (SKIP_AUTH) {
+      setState({ user: DEV_USER, token: null, isLoading: false });
+      navigate("/", { replace: true });
+      return;
+    }
     const session = await authService.login(email, password);
     const token = session.accessToken;
     const user = mapSessionToUser(session);
@@ -57,6 +76,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = () => {
+    if (SKIP_AUTH) {
+      setState({ user: DEV_USER, token: null, isLoading: false });
+      navigate("/", { replace: true });
+      return;
+    }
     localStorage.removeItem(AUTH_TOKEN_KEY);
     setState({ user: null, token: null, isLoading: false });
     navigate("/login", { replace: true });

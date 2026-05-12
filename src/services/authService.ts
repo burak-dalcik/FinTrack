@@ -12,9 +12,7 @@ export const authService = {
   },
 
   async getCurrentUser(token: string): Promise<AuthSession> {
-    // Current session info: GET /currentuser
-    const baseURL = (authClient.defaults.baseURL as string) ?? "";
-    const response = await axios.get<AuthSession>(`${baseURL}/currentuser`, {
+    const response = await authClient.get<AuthSession>("/currentuser", {
       headers: {
         Authorization: `Bearer ${token}`
       }

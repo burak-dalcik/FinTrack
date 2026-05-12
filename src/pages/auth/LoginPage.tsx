@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useLocation, Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { setBusinessCodename, setEnvironment } from "../../services/apiClient";
+import { SKIP_AUTH } from "../../config/authMode";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -19,6 +20,10 @@ export const LoginPage = () => {
     setEnvironment("preview");
     setBusinessCodename("babil");
   }, []);
+
+  if (SKIP_AUTH) {
+    return <Navigate to="/" replace />;
+  }
 
   if (user && !isLoading) {
     return <Navigate to={from} replace />;
